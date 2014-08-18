@@ -87,6 +87,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		652B81F619A251B30023DF99 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				65DB690019A20059009E5034 /* InfoPlist.strings */,
+				65DB690319A20059009E5034 /* main.m */,
+				65DB690419A20059009E5034 /* MVSlidingSegmentedControl-Info.plist */,
+				65DB690519A20059009E5034 /* MVSlidingSegmentedControl-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		65DB68BA19A1FFC7009E5034 = {
 			isa = PBXGroup;
 			children = (
@@ -141,14 +152,11 @@
 		65DB68FB19A20059009E5034 /* MVSlidingSegmentedControlDemo */ = {
 			isa = PBXGroup;
 			children = (
+				652B81F619A251B30023DF99 /* Supporting Files */,
 				65DB68FC19A20059009E5034 /* AppDelegate.h */,
 				65DB68FD19A20059009E5034 /* AppDelegate.m */,
 				65DB68FE19A20059009E5034 /* Main.storyboard */,
-				65DB690019A20059009E5034 /* InfoPlist.strings */,
 				65DB690219A20059009E5034 /* Images.xcassets */,
-				65DB690319A20059009E5034 /* main.m */,
-				65DB690419A20059009E5034 /* MVSlidingSegmentedControl-Info.plist */,
-				65DB690519A20059009E5034 /* MVSlidingSegmentedControl-Prefix.pch */,
 				65DB690619A20059009E5034 /* ViewController.h */,
 				65DB690719A20059009E5034 /* ViewController.m */,
 			);
