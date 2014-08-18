@@ -6,13 +6,14 @@
 //  Copyright (c) 2014 musevisions. All rights reserved.
 //
 
-#import <Masonry/View+MASShorthandAdditions.h>
 #import "ViewController.h"
 #import "MVSlidingSegmentedControl.h"
-#import "MASConstraintMaker.h"
 
 @interface ViewController ()
-@property(strong, nonatomic) MVSlidingSegmentedControl *control;
+@property(strong, nonatomic) IBOutlet MVSlidingSegmentedControl *segmentedControl;
+- (IBAction)newPageSelected:(id)sender;
+- (IBAction)nextButtonPressed:(id)sender;
+- (IBAction)prevButtonPressed:(id)sender;
 @end
 
 @implementation ViewController
@@ -22,28 +23,31 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    self.control = [[MVSlidingSegmentedControl alloc] initWithItems:@[@"Left", @"Center", @"Right"]];
-    [self.view addSubview:self.control];
+    self.segmentedControl.titles = @[@"Left", @"Center", @"Right"];
+    // Use this for block based notifications
+//    self.segmentedControl.segmentDidChangeBlock = ^(NSUInteger currentlySelectedIndex) {
+//
+//        NSLog(@"new page: %d", self.segmentedControl.currentlySelectedIndex);
+//    };
 }
 
-- (void)updateViewConstraints
-{
-    [super updateViewConstraints];
+- (IBAction)newPageSelected:(id)sender {
 
-    [self.control makeConstraints:^(MASConstraintMaker *make) {
-
-        make.top.equalTo(self.view).offset(100);
-        make.width.equalTo(@300);
-        make.centerX.equalTo(self.view);
-        make.height.equalTo(@44);
-    }];
-
+    NSLog(@"new page: %d", self.segmentedControl.currentlySelectedIndex);
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)nextButtonPressed:(id)sender {
+
+    NSUInteger nextIndex = self.segmentedControl.currentlySelectedIndex + 1;
+    if ([self.segmentedControl isSegmentIndexValid:nextIndex]) {
+        [self.segmentedControl setCurrentlySelectedIndex:nextIndex animated:YES];
+    }
+}
+- (IBAction)prevButtonPressed:(id)sender {
+
+    if (self.segmentedControl.currentlySelectedIndex > 0) {
+        [self.segmentedControl setCurrentlySelectedIndex:self.segmentedControl.currentlySelectedIndex - 1 animated:YES];
+    }
 }
 
 @end

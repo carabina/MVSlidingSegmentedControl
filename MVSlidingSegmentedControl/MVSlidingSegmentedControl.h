@@ -12,4 +12,13 @@
 
 - (id)initWithItems:(NSArray *)items;
 
+@property(strong, nonatomic) NSArray *titles;
+
+@property (nonatomic) NSUInteger currentlySelectedIndex;
+
+- (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex animated:(BOOL)animated;
+- (BOOL)isSegmentIndexValid:(NSUInteger)index;
+
+@property (strong) void (^segmentDidChangeBlock)(NSUInteger currentlySelectedIndex);
+
 @end

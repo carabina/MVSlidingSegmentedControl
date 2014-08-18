@@ -18,7 +18,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 @property(strong, nonatomic) NSMutableArray *labels;
 @property(strong, nonatomic) UIView *segment;
 
-@property NSUInteger currentlySelectedIndex;
+@property BOOL isConfigured;
 @property CGFloat initialTouchX;
 
 @property (nonatomic) CGFloat baseSegmentOffset;
@@ -30,18 +30,30 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (id)initWithItems:(NSArray *)items {
 
-    NSAssert(items.count >= 2 && items.count <= 3, @"Only controls with 2 or 3 items are supported");
     if (self = [super init]) {
 
-        [self configure];
-        [self createSegmentedControl];
-        [self createLabels:items];
-
+        self.titles = items;
     }
     return self;
 }
 
+- (void)setTitles:(NSArray *)titles
+{
+    NSAssert(titles.count >= 2 && titles.count <= 3, @"Only controls with 2 or 3 items are supported");
+    [self configure];
+    [self createLabels:titles];
+}
+
+- (BOOL)isSegmentIndexValid:(NSUInteger)index {
+    return index < self.labels.count;
+}
+
+
 - (void)createLabels:(NSArray *)items {
+
+    for (UILabel *label in _labels) {
+        [label removeFromSuperview];
+    }
 
     _labels = [NSMutableArray new];
     for (NSString *title in items) {
@@ -53,11 +65,20 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)configure {
 
+    if (_isConfigured) {
+        return;
+    }
+    _isConfigured = YES;
+
     _currentlySelectedIndex = 0;
 
     self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+
+    [self createSegmentedControl];
+
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
 }
 
 - (void)createSegmentedControl {
@@ -65,6 +86,8 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     _segment.backgroundColor = [UIColor whiteColor];
     _segment.layer.cornerRadius = 5;
     _segment.layer.masksToBounds = YES;
+    _segment.layer.borderColor = [UIColor colorWithWhite:0.5 alpha:1].CGColor;
+    _segment.layer.borderWidth = 2.0f;
     [self addSubview:_segment];
 }
 
@@ -93,11 +116,10 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)layoutSegment {
 
-    CGFloat offset = 2;
     [_segment makeConstraints:^(MASConstraintMaker *make) {
 
-        make.top.equalTo(self).offset(offset);
-        make.bottom.equalTo(self).offset(-offset);
+        make.top.equalTo(self);
+        make.bottom.equalTo(self);
         make.width.equalTo(self).dividedBy(_labels.count);
         make.left.equalTo(self.left);
     }];
@@ -132,7 +154,49 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     // TODO: 4 items!
 }
 
+- (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex
+{
+    [self setCurrentlySelectedIndex:currentlySelectedIndex animated:NO];
+}
+
+- (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex animated:(BOOL)animated
+{
+    NSAssert(currentlySelectedIndex < self.labels.count, @"Try to set index out of bounds");
+    _currentlySelectedIndex = currentlySelectedIndex;
+
+    CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
+    [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
+    if (animated) {
+        [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
+
+            [_segment layoutIfNeeded];
+        }];
+    }
+    else {
+        [_segment layoutIfNeeded];
+    }
+}
 #pragma mark - touch handling
+
+- (void)viewTapped:(UIGestureRecognizer *)gestureRecognizer {
+    CGPoint point = [gestureRecognizer locationInView:self];
+    NSUInteger page = (NSUInteger)(point.x / self.segmentWidth);
+    if (page != _currentlySelectedIndex) {
+        _currentlySelectedIndex = page;
+
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+        if (self.segmentDidChangeBlock) {
+            self.segmentDidChangeBlock(_currentlySelectedIndex);
+        }
+
+        CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
+        [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
+        [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
+
+            [_segment layoutIfNeeded];
+        }];
+    }
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -155,7 +219,6 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-
     CGFloat offset = point.x - self.initialTouchX;
 
     [self completeSegmentTransitionWithOffset:offset];
@@ -175,6 +238,13 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     return self.segmentWidth * _currentlySelectedIndex;
 }
 
+- (void)updateSegmentLeftOffset:(CGFloat)leftOffset {
+
+    [_segment updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.left).offset(leftOffset);
+    }];
+}
+
 - (void)updateSegmentWithOffset:(CGFloat)offset {
 
     CGFloat newOffset = offset + [self baseSegmentOffset];
@@ -185,17 +255,15 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     else if (newOffset < 0) {
         newOffset = 0;
     }
-    [_segment updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.left).offset(newOffset);
-    }];
+    [self updateSegmentLeftOffset:newOffset];
     [_segment setNeedsLayout];
 }
 
 - (void)completeSegmentTransitionWithOffset:(CGFloat)offset {
 
     NSInteger steps = [self indexForTransitionComplete:offset];
-    NSInteger newIndex = _currentlySelectedIndex + steps;
-    if (newIndex >= self.labels.count) {
+    NSInteger newIndex = (NSInteger)_currentlySelectedIndex + steps;
+    if (newIndex >= (NSInteger)self.labels.count) {
         newIndex = self.labels.count - 1;
     }
     else if (newIndex < 0) {
@@ -203,13 +271,14 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     }
     if (_currentlySelectedIndex != newIndex) {
         _currentlySelectedIndex = (NSUInteger)newIndex;
-        // Delegate call
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+        if (self.segmentDidChangeBlock) {
+            self.segmentDidChangeBlock(_currentlySelectedIndex);
+        }
     }
 
     CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
-    [_segment updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.left).offset(_currentlySelectedIndex * segmentWidth);
-    }];
+    [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
     [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
 
         [_segment layoutIfNeeded];
