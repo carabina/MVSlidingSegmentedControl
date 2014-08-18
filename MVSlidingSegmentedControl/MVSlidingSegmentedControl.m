@@ -151,8 +151,6 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
     [self layoutSegment];
     [self layoutLabels];
-
-    NSLog(@"%s", __func__);
 }
 
 - (void)layoutSegment {
@@ -241,8 +239,8 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     _currentlySelectedIndex = to;
 
     [self sendActionsForControlEvents:UIControlEventValueChanged];
-    if (self.segmentDidChangeBlock) {
-        self.segmentDidChangeBlock(_currentlySelectedIndex);
+    if (self.didChangeSegmentBlock) {
+        self.didChangeSegmentBlock(_currentlySelectedIndex);
     }
 }
 

@@ -18,7 +18,7 @@
 - (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex animated:(BOOL)animated;
 - (BOOL)isSegmentIndexValid:(NSUInteger)index;
 
-@property (strong) void (^segmentDidChangeBlock)(NSUInteger currentlySelectedIndex);
+@property (strong) void (^didChangeSegmentBlock)(NSUInteger currentlySelectedIndex);
 
 // UI Properties
 @property(copy, nonatomic) UIColor *backgroundColor;
