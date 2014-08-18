@@ -10,17 +10,20 @@
 		65DB68C719A1FFC7009E5034 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB68C619A1FFC7009E5034 /* Foundation.framework */; };
 		65DB68C919A1FFC7009E5034 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB68C819A1FFC7009E5034 /* CoreGraphics.framework */; };
 		65DB68CB19A1FFC7009E5034 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB68CA19A1FFC7009E5034 /* UIKit.framework */; };
-		65DB68D119A1FFC7009E5034 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65DB68CF19A1FFC7009E5034 /* InfoPlist.strings */; };
-		65DB68D319A1FFC7009E5034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB68D219A1FFC7009E5034 /* main.m */; };
-		65DB68D719A1FFC7009E5034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB68D619A1FFC7009E5034 /* AppDelegate.m */; };
-		65DB68DA19A1FFC7009E5034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DB68D819A1FFC7009E5034 /* Main.storyboard */; };
-		65DB68DD19A1FFC7009E5034 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB68DC19A1FFC7009E5034 /* ViewController.m */; };
-		65DB68DF19A1FFC7009E5034 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65DB68DE19A1FFC7009E5034 /* Images.xcassets */; };
 		65DB68E619A1FFC7009E5034 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB68E519A1FFC7009E5034 /* XCTest.framework */; };
 		65DB68E719A1FFC7009E5034 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB68C619A1FFC7009E5034 /* Foundation.framework */; };
 		65DB68E819A1FFC7009E5034 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB68CA19A1FFC7009E5034 /* UIKit.framework */; };
 		65DB68F019A1FFC7009E5034 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65DB68EE19A1FFC7009E5034 /* InfoPlist.strings */; };
 		65DB68F219A1FFC7009E5034 /* MVSlidingSegmentedControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB68F119A1FFC7009E5034 /* MVSlidingSegmentedControlTests.m */; };
+		65DB690819A20059009E5034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB68FD19A20059009E5034 /* AppDelegate.m */; };
+		65DB690919A20059009E5034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DB68FE19A20059009E5034 /* Main.storyboard */; };
+		65DB690A19A20059009E5034 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65DB690019A20059009E5034 /* InfoPlist.strings */; };
+		65DB690B19A20059009E5034 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65DB690219A20059009E5034 /* Images.xcassets */; };
+		65DB690C19A20059009E5034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB690319A20059009E5034 /* main.m */; };
+		65DB690D19A20059009E5034 /* MVSlidingSegmentedControl-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65DB690419A20059009E5034 /* MVSlidingSegmentedControl-Info.plist */; };
+		65DB690E19A20059009E5034 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB690719A20059009E5034 /* ViewController.m */; };
+		65DB691219A200C3009E5034 /* MVSlidingSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB691119A200C3009E5034 /* MVSlidingSegmentedControl.m */; };
+		9D3D7E9CB11B4507BDABB60A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A3F4FF0BB04D26940F4E15 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,25 +37,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07A3F4FF0BB04D26940F4E15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B13208AC6D541528F3E088B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		65DB68C319A1FFC7009E5034 /* MVSlidingSegmentedControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVSlidingSegmentedControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DB68C619A1FFC7009E5034 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		65DB68C819A1FFC7009E5034 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		65DB68CA19A1FFC7009E5034 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		65DB68CE19A1FFC7009E5034 /* MVSlidingSegmentedControl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MVSlidingSegmentedControl-Info.plist"; sourceTree = "<group>"; };
-		65DB68D019A1FFC7009E5034 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		65DB68D219A1FFC7009E5034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		65DB68D419A1FFC7009E5034 /* MVSlidingSegmentedControl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MVSlidingSegmentedControl-Prefix.pch"; sourceTree = "<group>"; };
-		65DB68D519A1FFC7009E5034 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		65DB68D619A1FFC7009E5034 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		65DB68D919A1FFC7009E5034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		65DB68DB19A1FFC7009E5034 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		65DB68DC19A1FFC7009E5034 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		65DB68DE19A1FFC7009E5034 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		65DB68E419A1FFC7009E5034 /* MVSlidingSegmentedControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVSlidingSegmentedControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DB68E519A1FFC7009E5034 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		65DB68ED19A1FFC7009E5034 /* MVSlidingSegmentedControlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MVSlidingSegmentedControlTests-Info.plist"; sourceTree = "<group>"; };
 		65DB68EF19A1FFC7009E5034 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		65DB68F119A1FFC7009E5034 /* MVSlidingSegmentedControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVSlidingSegmentedControlTests.m; sourceTree = "<group>"; };
+		65DB68FC19A20059009E5034 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		65DB68FD19A20059009E5034 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		65DB68FF19A20059009E5034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		65DB690119A20059009E5034 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		65DB690219A20059009E5034 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		65DB690319A20059009E5034 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		65DB690419A20059009E5034 /* MVSlidingSegmentedControl-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MVSlidingSegmentedControl-Info.plist"; sourceTree = "<group>"; };
+		65DB690519A20059009E5034 /* MVSlidingSegmentedControl-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MVSlidingSegmentedControl-Prefix.pch"; sourceTree = "<group>"; };
+		65DB690619A20059009E5034 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		65DB690719A20059009E5034 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		65DB691019A200C3009E5034 /* MVSlidingSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVSlidingSegmentedControl.h; sourceTree = "<group>"; };
+		65DB691119A200C3009E5034 /* MVSlidingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVSlidingSegmentedControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +70,7 @@
 				65DB68C919A1FFC7009E5034 /* CoreGraphics.framework in Frameworks */,
 				65DB68CB19A1FFC7009E5034 /* UIKit.framework in Frameworks */,
 				65DB68C719A1FFC7009E5034 /* Foundation.framework in Frameworks */,
+				9D3D7E9CB11B4507BDABB60A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +90,12 @@
 		65DB68BA19A1FFC7009E5034 = {
 			isa = PBXGroup;
 			children = (
-				65DB68CC19A1FFC7009E5034 /* MVSlidingSegmentedControl */,
+				65DB690F19A200AF009E5034 /* MVSlidingSegmentedControl */,
+				65DB68FB19A20059009E5034 /* MVSlidingSegmentedControlDemo */,
 				65DB68EB19A1FFC7009E5034 /* MVSlidingSegmentedControlTests */,
 				65DB68C519A1FFC7009E5034 /* Frameworks */,
 				65DB68C419A1FFC7009E5034 /* Products */,
+				4B13208AC6D541528F3E088B /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,33 +115,9 @@
 				65DB68C819A1FFC7009E5034 /* CoreGraphics.framework */,
 				65DB68CA19A1FFC7009E5034 /* UIKit.framework */,
 				65DB68E519A1FFC7009E5034 /* XCTest.framework */,
+				07A3F4FF0BB04D26940F4E15 /* libPods.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		65DB68CC19A1FFC7009E5034 /* MVSlidingSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				65DB68D519A1FFC7009E5034 /* AppDelegate.h */,
-				65DB68D619A1FFC7009E5034 /* AppDelegate.m */,
-				65DB68D819A1FFC7009E5034 /* Main.storyboard */,
-				65DB68DB19A1FFC7009E5034 /* ViewController.h */,
-				65DB68DC19A1FFC7009E5034 /* ViewController.m */,
-				65DB68DE19A1FFC7009E5034 /* Images.xcassets */,
-				65DB68CD19A1FFC7009E5034 /* Supporting Files */,
-			);
-			path = MVSlidingSegmentedControl;
-			sourceTree = "<group>";
-		};
-		65DB68CD19A1FFC7009E5034 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				65DB68CE19A1FFC7009E5034 /* MVSlidingSegmentedControl-Info.plist */,
-				65DB68CF19A1FFC7009E5034 /* InfoPlist.strings */,
-				65DB68D219A1FFC7009E5034 /* main.m */,
-				65DB68D419A1FFC7009E5034 /* MVSlidingSegmentedControl-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		65DB68EB19A1FFC7009E5034 /* MVSlidingSegmentedControlTests */ = {
@@ -152,6 +138,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		65DB68FB19A20059009E5034 /* MVSlidingSegmentedControlDemo */ = {
+			isa = PBXGroup;
+			children = (
+				65DB68FC19A20059009E5034 /* AppDelegate.h */,
+				65DB68FD19A20059009E5034 /* AppDelegate.m */,
+				65DB68FE19A20059009E5034 /* Main.storyboard */,
+				65DB690019A20059009E5034 /* InfoPlist.strings */,
+				65DB690219A20059009E5034 /* Images.xcassets */,
+				65DB690319A20059009E5034 /* main.m */,
+				65DB690419A20059009E5034 /* MVSlidingSegmentedControl-Info.plist */,
+				65DB690519A20059009E5034 /* MVSlidingSegmentedControl-Prefix.pch */,
+				65DB690619A20059009E5034 /* ViewController.h */,
+				65DB690719A20059009E5034 /* ViewController.m */,
+			);
+			path = MVSlidingSegmentedControlDemo;
+			sourceTree = "<group>";
+		};
+		65DB690F19A200AF009E5034 /* MVSlidingSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				65DB691019A200C3009E5034 /* MVSlidingSegmentedControl.h */,
+				65DB691119A200C3009E5034 /* MVSlidingSegmentedControl.m */,
+			);
+			path = MVSlidingSegmentedControl;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65DB68F519A1FFC8009E5034 /* Build configuration list for PBXNativeTarget "MVSlidingSegmentedControl" */;
 			buildPhases = (
+				E7A1DDF6159642FA9851AA6C /* Check Pods Manifest.lock */,
 				65DB68BF19A1FFC7009E5034 /* Sources */,
 				65DB68C019A1FFC7009E5034 /* Frameworks */,
 				65DB68C119A1FFC7009E5034 /* Resources */,
+				7B9DD9217DB64A69BD239D06 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,7 +214,7 @@
 				ORGANIZATIONNAME = musevisions;
 				TargetAttributes = {
 					65DB68E319A1FFC7009E5034 = {
-						TestTargetID = 65DB68C219A1FFC7009E5034;
+						TestTargetID = 65DB68C219A1FFC7009E5034 /* MVSlidingSegmentedControl */;
 					};
 				};
 			};
@@ -228,9 +242,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65DB68DF19A1FFC7009E5034 /* Images.xcassets in Resources */,
-				65DB68D119A1FFC7009E5034 /* InfoPlist.strings in Resources */,
-				65DB68DA19A1FFC7009E5034 /* Main.storyboard in Resources */,
+				65DB690B19A20059009E5034 /* Images.xcassets in Resources */,
+				65DB690D19A20059009E5034 /* MVSlidingSegmentedControl-Info.plist in Resources */,
+				65DB690919A20059009E5034 /* Main.storyboard in Resources */,
+				65DB690A19A20059009E5034 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +259,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7B9DD9217DB64A69BD239D06 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7A1DDF6159642FA9851AA6C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		65DB68BF19A1FFC7009E5034 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65DB68DD19A1FFC7009E5034 /* ViewController.m in Sources */,
-				65DB68D719A1FFC7009E5034 /* AppDelegate.m in Sources */,
-				65DB68D319A1FFC7009E5034 /* main.m in Sources */,
+				65DB691219A200C3009E5034 /* MVSlidingSegmentedControl.m in Sources */,
+				65DB690E19A20059009E5034 /* ViewController.m in Sources */,
+				65DB690C19A20059009E5034 /* main.m in Sources */,
+				65DB690819A20059009E5034 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,26 +323,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		65DB68CF19A1FFC7009E5034 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65DB68D019A1FFC7009E5034 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		65DB68D819A1FFC7009E5034 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65DB68D919A1FFC7009E5034 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		65DB68EE19A1FFC7009E5034 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				65DB68EF19A1FFC7009E5034 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		65DB68FE19A20059009E5034 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65DB68FF19A20059009E5034 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		65DB690019A20059009E5034 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65DB690119A20059009E5034 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -373,26 +422,30 @@
 		};
 		65DB68F619A1FFC8009E5034 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B13208AC6D541528F3E088B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MVSlidingSegmentedControl/MVSlidingSegmentedControl-Prefix.pch";
-				INFOPLIST_FILE = "MVSlidingSegmentedControl/MVSlidingSegmentedControl-Info.plist";
+				GCC_PREFIX_HEADER = "MVSlidingSegmentedControlDemo/MVSlidingSegmentedControl-Prefix.pch";
+				INFOPLIST_FILE = "MVSlidingSegmentedControlDemo/MVSlidingSegmentedControl-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		65DB68F719A1FFC8009E5034 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B13208AC6D541528F3E088B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MVSlidingSegmentedControl/MVSlidingSegmentedControl-Prefix.pch";
-				INFOPLIST_FILE = "MVSlidingSegmentedControl/MVSlidingSegmentedControl-Info.plist";
+				GCC_PREFIX_HEADER = "MVSlidingSegmentedControlDemo/MVSlidingSegmentedControl-Prefix.pch";
+				INFOPLIST_FILE = "MVSlidingSegmentedControlDemo/MVSlidingSegmentedControl-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -456,6 +509,7 @@
 				65DB68F719A1FFC8009E5034 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65DB68F819A1FFC8009E5034 /* Build configuration list for PBXNativeTarget "MVSlidingSegmentedControlTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +518,7 @@
 				65DB68FA19A1FFC8009E5034 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
