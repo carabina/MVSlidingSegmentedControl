@@ -24,6 +24,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
     self.segmentedControl.titles = @[@"Left", @"Center", @"Right"];
+    self.segmentedControl.selectedTitleFont = [UIFont boldSystemFontOfSize:16];
+    self.segmentedControl.unselectedTitleFont = [UIFont systemFontOfSize:16];
     // Use this for block based notifications
 //    self.segmentedControl.segmentDidChangeBlock = ^(NSUInteger currentlySelectedIndex) {
 //

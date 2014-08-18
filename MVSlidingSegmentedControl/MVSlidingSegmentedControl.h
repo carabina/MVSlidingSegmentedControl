@@ -10,8 +10,7 @@
 
 @interface MVSlidingSegmentedControl : UIControl
 
-- (id)initWithItems:(NSArray *)items;
-
+// Mandatory property (needs to be set for the segmented control to be configured)
 @property(strong, nonatomic) NSArray *titles;
 
 @property (nonatomic) NSUInteger currentlySelectedIndex;
@@ -21,4 +20,11 @@
 
 @property (strong) void (^segmentDidChangeBlock)(NSUInteger currentlySelectedIndex);
 
+// UI Properties
+@property(copy, nonatomic) UIColor *backgroundColor;
+@property(copy, nonatomic) UIColor *segmentColor;
+@property(nonatomic) CGFloat cornerRadius;
+@property(nonatomic) CGFloat segmentPadding;
+@property(strong, nonatomic) UIFont *selectedTitleFont;
+@property(strong, nonatomic) UIFont *unselectedTitleFont;
 @end

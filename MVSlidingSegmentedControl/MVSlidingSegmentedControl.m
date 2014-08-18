@@ -28,18 +28,10 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 @implementation MVSlidingSegmentedControl
 
-- (id)initWithItems:(NSArray *)items {
-
-    if (self = [super init]) {
-
-        self.titles = items;
-    }
-    return self;
-}
-
 - (void)setTitles:(NSArray *)titles
 {
     NSAssert(titles.count >= 2 && titles.count <= 3, @"Only controls with 2 or 3 items are supported");
+    _titles = titles;
     [self configure];
     [self createLabels:titles];
 }
@@ -48,7 +40,56 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     return index < self.labels.count;
 }
 
+#pragma mark - setters
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    [super setBackgroundColor:backgroundColor];
+    _segment.layer.borderColor = backgroundColor.CGColor;
+}
 
+- (void)setSegmentColor:(UIColor *)segmentColor
+{
+    _segmentColor = segmentColor;
+    _segment.backgroundColor = segmentColor;
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius
+{
+    _cornerRadius = cornerRadius;
+    self.layer.cornerRadius = cornerRadius;
+    _segment.layer.cornerRadius = cornerRadius;
+}
+- (void)setSegmentPadding:(CGFloat)segmentPadding
+{
+    _segmentPadding = segmentPadding;
+    _segment.layer.borderWidth = segmentPadding;
+}
+- (void)setSelectedTitleFont:(UIFont *)selectedTitleFont
+{
+    _selectedTitleFont = selectedTitleFont;
+
+    for (int i = 0; i < self.labels.count; i++) {
+        UILabel *label = self.labels[i];
+        if (i == _currentlySelectedIndex) {
+            label.font = selectedTitleFont;
+            break;
+        }
+    }
+}
+
+- (void)setUnselectedTitleFont:(UIFont *)unselectedTitleFont
+{
+    _unselectedTitleFont = unselectedTitleFont;
+
+    for (int i = 0; i < self.labels.count; i++) {
+        UILabel *label = self.labels[i];
+        if (i != _currentlySelectedIndex) {
+            label.font = unselectedTitleFont;
+        }
+    }
+}
+
+#pragma mark - configuration
 - (void)createLabels:(NSArray *)items {
 
     for (UILabel *label in _labels) {
@@ -162,32 +203,57 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 - (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex animated:(BOOL)animated
 {
     NSAssert(currentlySelectedIndex < self.labels.count, @"Try to set index out of bounds");
-    _currentlySelectedIndex = currentlySelectedIndex;
+    if (_currentlySelectedIndex != currentlySelectedIndex) {
+        [self updatedSelectedLabelFrom:_currentlySelectedIndex to:currentlySelectedIndex];
+        _currentlySelectedIndex = currentlySelectedIndex;
 
-    CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
-    [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
-    if (animated) {
-        [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
+        CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
+        [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
+        if (animated) {
+            [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
 
+                [_segment layoutIfNeeded];
+            }];
+        }
+        else {
             [_segment layoutIfNeeded];
-        }];
-    }
-    else {
-        [_segment layoutIfNeeded];
+        }
     }
 }
 #pragma mark - touch handling
 
+- (void)updatedSelectedLabelFrom:(NSUInteger)from to:(NSUInteger)to {
+
+    if (self.unselectedTitleFont) {
+        UILabel *oldLabel = self.labels[from];
+        oldLabel.font = self.unselectedTitleFont;
+    }
+    if (self.selectedTitleFont) {
+        UILabel *newLabel = self.labels[to];
+        newLabel.font = self.selectedTitleFont;
+    }
+}
+
+- (void)updateCurrentSegmentFrom:(NSUInteger)from to:(NSUInteger)to {
+
+    [self updatedSelectedLabelFrom:from to:to];
+
+    _currentlySelectedIndex = to;
+
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    if (self.segmentDidChangeBlock) {
+        self.segmentDidChangeBlock(_currentlySelectedIndex);
+    }
+}
+
 - (void)viewTapped:(UIGestureRecognizer *)gestureRecognizer {
+    if (!_isConfigured) {
+        return;
+    }
     CGPoint point = [gestureRecognizer locationInView:self];
     NSUInteger page = (NSUInteger)(point.x / self.segmentWidth);
     if (page != _currentlySelectedIndex) {
-        _currentlySelectedIndex = page;
-
-        [self sendActionsForControlEvents:UIControlEventValueChanged];
-        if (self.segmentDidChangeBlock) {
-            self.segmentDidChangeBlock(_currentlySelectedIndex);
-        }
+        [self updateCurrentSegmentFrom:_currentlySelectedIndex to:page];
 
         CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
         [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
@@ -200,6 +266,9 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!_isConfigured) {
+        return;
+    }
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
 
@@ -208,6 +277,9 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!_isConfigured) {
+        return;
+    }
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     CGFloat offset = point.x - self.initialTouchX;
@@ -217,6 +289,9 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!_isConfigured) {
+        return;
+    }
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     CGFloat offset = point.x - self.initialTouchX;
@@ -226,6 +301,9 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!_isConfigured) {
+        return;
+    }
     [self completeSegmentTransitionWithOffset:0];
 }
 
@@ -270,11 +348,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
         newIndex = 0;
     }
     if (_currentlySelectedIndex != newIndex) {
-        _currentlySelectedIndex = (NSUInteger)newIndex;
-        [self sendActionsForControlEvents:UIControlEventValueChanged];
-        if (self.segmentDidChangeBlock) {
-            self.segmentDidChangeBlock(_currentlySelectedIndex);
-        }
+        [self updateCurrentSegmentFrom:_currentlySelectedIndex to:(NSUInteger)newIndex];
     }
 
     CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
