@@ -2,11 +2,7 @@ MVSlidingSegmentedControl
 =========================
 Instagram-style sliding segmented control
 
-Scope
--------------------------------------------------------
-
-MVSlidingSegmentedControl is intended as an alternative to UISegmentedControl.
-
+![MVSlidingSegmentedControl preview](https://github.com/bizz84/MVSlidingSegmentedControl/raw/master/screenshot.png "MVSlidingSegmentedControl preview")
 
 Features
 -------------------------------------------------------
