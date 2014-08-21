@@ -44,13 +44,21 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
-    _segment.layer.borderColor = backgroundColor.CGColor;
+    if (_borderColor == nil) {
+        self.borderColor = backgroundColor;
+    }
 }
 
 - (void)setSegmentColor:(UIColor *)segmentColor
 {
     _segmentColor = segmentColor;
     _segment.backgroundColor = segmentColor;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor
+{
+    _borderColor = borderColor;
+    _segment.layer.borderColor = borderColor.CGColor;
 }
 
 - (void)setCornerRadius:(CGFloat)cornerRadius

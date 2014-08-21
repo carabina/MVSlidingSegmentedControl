@@ -30,6 +30,7 @@
     control.selectedTitleFont = [UIFont boldSystemFontOfSize:fontSize];
     control.unselectedTitleFont = [UIFont systemFontOfSize:fontSize];
     control.backgroundColor = [UIColor lightGrayColor];
+    control.borderColor = [UIColor colorWithWhite:0.5 alpha:1.0];
 }
 
 - (void)viewDidLoad

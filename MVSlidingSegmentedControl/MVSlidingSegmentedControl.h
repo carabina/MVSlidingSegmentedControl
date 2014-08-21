@@ -23,6 +23,7 @@
 // UI Properties
 @property(copy, nonatomic) UIColor *backgroundColor;
 @property(copy, nonatomic) UIColor *segmentColor;
+@property(copy, nonatomic) UIColor *borderColor;
 @property(nonatomic) CGFloat cornerRadius;
 @property(nonatomic) CGFloat segmentPadding;
 @property(strong, nonatomic) UIFont *selectedTitleFont;
