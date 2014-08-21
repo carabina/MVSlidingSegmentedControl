@@ -2,6 +2,8 @@ MVSlidingSegmentedControl
 =========================
 Instagram-style sliding segmented control
 
+![MVSlidingSegmentedControl preview](https://github.com/bizz84/MVSlidingSegmentedControl/raw/master/animated.gif "MVSlidingSegmentedControl preview")
+
 ![MVSlidingSegmentedControl preview](https://github.com/bizz84/MVSlidingSegmentedControl/raw/master/screenshot.png "MVSlidingSegmentedControl preview")
 
 Features
