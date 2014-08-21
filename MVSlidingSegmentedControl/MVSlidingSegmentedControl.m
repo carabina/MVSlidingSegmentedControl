@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 musevisions. All rights reserved.
 //
 
+
 #import "MVSlidingSegmentedControl.h"
 #import "MASConstraint.h"
 #import "MASConstraintMaker.h"
+
+#define MAS_SHORTHAND
 #import "View+MASShorthandAdditions.h"
 
 static NSTimeInterval kCompleteTransitionDuration = 0.2;
