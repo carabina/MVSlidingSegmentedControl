@@ -30,7 +30,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
 - (void)setTitles:(NSArray *)titles
 {
-    NSAssert(titles.count >= 2 && titles.count <= 3, @"Only controls with 2 or 3 items are supported");
+    NSAssert(titles.count >= 2 && titles.count <= 4, @"Only controls with 2 or 4 items are supported");
     _titles = titles;
     [self configure];
     [self createLabels:titles];
@@ -70,7 +70,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
     for (int i = 0; i < self.labels.count; i++) {
         UILabel *label = self.labels[i];
-        if (i == _currentlySelectedIndex) {
+        if (i == _selectedSegmentIndex) {
             label.font = selectedTitleFont;
             break;
         }
@@ -83,7 +83,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
     for (int i = 0; i < self.labels.count; i++) {
         UILabel *label = self.labels[i];
-        if (i != _currentlySelectedIndex) {
+        if (i != _selectedSegmentIndex) {
             label.font = unselectedTitleFont;
         }
     }
@@ -111,7 +111,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     }
     _isConfigured = YES;
 
-    _currentlySelectedIndex = 0;
+    _selectedSegmentIndex = 0;
 
     self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1];
     self.layer.cornerRadius = 5;
@@ -190,23 +190,33 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
             make.centerX.equalTo(self);
         }];
     }
-    // TODO: 4 items!
+    else if (_labels.count == 4) {
+        UILabel *centerLeftLabel = _labels[1];
+        [centerLeftLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.centerX);
+        }];
+        UILabel *centerRightLabel = _labels[2];
+        [centerRightLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.centerX);
+        }];
+    }
+    // TODO: More items
 }
 
-- (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex
+- (void)setSelectedSegmentIndex:(NSUInteger)selectedSegmentIndex
 {
-    [self setCurrentlySelectedIndex:currentlySelectedIndex animated:NO];
+    [self setSelectedSegmentIndex:selectedSegmentIndex animated:NO];
 }
 
-- (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex animated:(BOOL)animated
-{
-    NSAssert(currentlySelectedIndex < self.labels.count, @"Try to set index out of bounds");
-    if (_currentlySelectedIndex != currentlySelectedIndex) {
-        [self updatedSelectedLabelFrom:_currentlySelectedIndex to:currentlySelectedIndex];
-        _currentlySelectedIndex = currentlySelectedIndex;
+- (void)setSelectedSegmentIndex:(NSUInteger)selectedSegmentIndex animated:(BOOL)animated {
+
+    NSAssert(selectedSegmentIndex < self.labels.count, @"Try to set index out of bounds");
+    if (_selectedSegmentIndex != selectedSegmentIndex) {
+        [self updatedSelectedLabelFrom:_selectedSegmentIndex to:selectedSegmentIndex];
+        _selectedSegmentIndex = selectedSegmentIndex;
 
         CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
-        [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
+        [self updateSegmentLeftOffset:_selectedSegmentIndex * segmentWidth];
         if (animated) {
             [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
 
@@ -236,11 +246,11 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 
     [self updatedSelectedLabelFrom:from to:to];
 
-    _currentlySelectedIndex = to;
+    _selectedSegmentIndex = to;
 
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     if (self.didChangeSegmentBlock) {
-        self.didChangeSegmentBlock(_currentlySelectedIndex);
+        self.didChangeSegmentBlock(_selectedSegmentIndex);
     }
 }
 
@@ -250,11 +260,11 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
     }
     CGPoint point = [gestureRecognizer locationInView:self];
     NSUInteger page = (NSUInteger)(point.x / self.segmentWidth);
-    if (page != _currentlySelectedIndex) {
-        [self updateCurrentSegmentFrom:_currentlySelectedIndex to:page];
+    if (page != _selectedSegmentIndex) {
+        [self updateCurrentSegmentFrom:_selectedSegmentIndex to:page];
 
         CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
-        [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
+        [self updateSegmentLeftOffset:_selectedSegmentIndex * segmentWidth];
         [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
 
             [_segment layoutIfNeeded];
@@ -311,7 +321,7 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 }
 - (CGFloat)baseSegmentOffset {
 
-    return self.segmentWidth * _currentlySelectedIndex;
+    return self.segmentWidth * _selectedSegmentIndex;
 }
 
 - (void)updateSegmentLeftOffset:(CGFloat)leftOffset {
@@ -338,19 +348,19 @@ static NSTimeInterval kCompleteTransitionDuration = 0.2;
 - (void)completeSegmentTransitionWithOffset:(CGFloat)offset {
 
     NSInteger steps = [self indexForTransitionComplete:offset];
-    NSInteger newIndex = (NSInteger)_currentlySelectedIndex + steps;
+    NSInteger newIndex = (NSInteger) _selectedSegmentIndex + steps;
     if (newIndex >= (NSInteger)self.labels.count) {
         newIndex = self.labels.count - 1;
     }
     else if (newIndex < 0) {
         newIndex = 0;
     }
-    if (_currentlySelectedIndex != newIndex) {
-        [self updateCurrentSegmentFrom:_currentlySelectedIndex to:(NSUInteger)newIndex];
+    if (_selectedSegmentIndex != newIndex) {
+        [self updateCurrentSegmentFrom:_selectedSegmentIndex to:(NSUInteger) newIndex];
     }
 
     CGFloat segmentWidth = self.bounds.size.width / self.labels.count;
-    [self updateSegmentLeftOffset:_currentlySelectedIndex * segmentWidth];
+    [self updateSegmentLeftOffset:_selectedSegmentIndex * segmentWidth];
     [UIView animateWithDuration:kCompleteTransitionDuration animations:^{
 
         [_segment layoutIfNeeded];

@@ -13,12 +13,12 @@
 // Mandatory property (needs to be set for the segmented control to be configured)
 @property(strong, nonatomic) NSArray *titles;
 
-@property (nonatomic) NSUInteger currentlySelectedIndex;
+@property (nonatomic) NSUInteger selectedSegmentIndex;
 
-- (void)setCurrentlySelectedIndex:(NSUInteger)currentlySelectedIndex animated:(BOOL)animated;
+- (void)setSelectedSegmentIndex:(NSUInteger)selectedSegmentIndex animated:(BOOL)animated;
 - (BOOL)isSegmentIndexValid:(NSUInteger)index;
 
-@property (strong) void (^didChangeSegmentBlock)(NSUInteger currentlySelectedIndex);
+@property (strong) void (^didChangeSegmentBlock)(NSUInteger selectedSegmentIndex);
 
 // UI Properties
 @property(copy, nonatomic) UIColor *backgroundColor;
